@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 POST_TYPE = (
@@ -28,7 +29,7 @@ class Post(models.Model):
     # BE 1 SINCE HE IS THE SUPER USER. PRESS 1 AND HIT ENTER.
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class Comments(models.Model):
+class Comment(models.Model):
     body = models.TextField()
     views = 0
     created_on = models.DateTimeField(auto_now_add=True)
