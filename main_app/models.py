@@ -16,8 +16,9 @@ class Post(models.Model):
     )
     company = models.CharField(max_length=50)
     company_office_city = models.CharField(max_length=50)
-    created_on = models.DateTimeField(auto_add_now=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     views = models.IntegerField()
     flags = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Add User Auth to get user keys.
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
