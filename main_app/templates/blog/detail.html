@@ -1,13 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Pokemon Details</h1>
+<h1>{{ post.title }}</h1>
 
 <div class="card">
   <div class="card-content">
-    <span class="card-title">{{ post.title }}</span>
+    <p>{{ post.created_on }}</p>
     <a href="{% url 'post_update' post.id %}">Edit</a>
     <a href="{% url 'post_delete' post.id %}">Delete</a>
+    <h3>Leave a comment:</h3>
+    <form action="/blog/{{ post.pk }}/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.author }}
+        </div>
+        <div class="form-group">
+            {{ form.body }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+    <p>
+        On {{comment.created_on.date }}&nbsp;
+        <b>{{ comment.author }}</b> wrote:
+    </p>
+    <p>{{ comment.body }}</p>
+    <hr>
+    {% endfor %}
 </div>
 
 {% endblock %}
