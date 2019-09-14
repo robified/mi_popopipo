@@ -6,6 +6,8 @@
 <div class="card">
   <div class="card-content">
     <span class="card-title">{{ post.title }}</span>
+    <a href="{% url 'post_update' post.id %}">Edit</a>
+    <a href="{% url 'post_delete' post.id %}">Delete</a>
 </div>
 
 {% endblock %}
