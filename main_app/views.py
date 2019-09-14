@@ -3,9 +3,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post
+from .models import Comment
 
 def home(request):
   return render(request, 'home.html')
+
+class PostCreate(CreateView):
+  model = Post
+  fields = '__all__'
+  success_url = '/'
 
 def signup(request):
   error_message = ''
