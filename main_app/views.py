@@ -5,9 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Post
 from .models import Comment
 
-def home(request):
-  return render(request, 'home.html')
-
+# This is our Create Post view. We create new posts passing in the fields from the model.
 class PostCreate(CreateView):
   model = Post
   fields = '__all__'
@@ -20,6 +18,17 @@ class PostUpdate(UpdateView):
 class PostDelete(DeleteView):
     model = Post
     success_url = '/'
+
+def home(request):
+  return render(request, 'home.html')
+
+def post_index(request):
+  post = Post.objects.all()
+  return render(request, 'blog/index.html', {'post': post})
+
+def post_detail(request, post_id):
+  post = Post.objects.get(id=post_id)
+  return render(request, 'blog/detail.html', { 'post': post })
 
 def signup(request):
   error_message = ''
