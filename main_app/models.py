@@ -29,6 +29,12 @@ class Post(models.Model):
     # BE 1 SINCE HE IS THE SUPER USER. PRESS 1 AND HIT ENTER.
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
+
+    def get_absolut_url(self):
+        return reverse('detail', kwargs={'post_id': self.id})
+
 class Comment(models.Model):
     body = models.TextField()
     views = 0
