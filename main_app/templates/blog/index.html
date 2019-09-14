@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Pokedex</h1>
+
+{% for single_post in post%}
+    <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{single_post.title}}</span>
+                <p>{{single_post.id}}</p>
+                <a href="{% url 'detail' single_post.id %}">Details</a>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endblock %}
