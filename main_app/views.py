@@ -8,12 +8,12 @@ from .models import Comment
 # This is our Create Post view. We create new posts passing in the fields from the model.
 class PostCreate(CreateView):
   model = Post
-  fields = '__all__'
+  fields = ['title', 'categories', 'company', 'company_office_city', 'body']
   success_url = '/'
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = '__all__'
+    fields = ['title', 'categories', 'company', 'company_office_city', 'body']
 
 class PostDelete(DeleteView):
     model = Post
