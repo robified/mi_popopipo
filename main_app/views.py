@@ -13,6 +13,14 @@ class PostCreate(CreateView):
   fields = '__all__'
   success_url = '/'
 
+class PostUpdate(UpdateView):
+    model = Post
+    fields = '__all__'
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = '/'
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
