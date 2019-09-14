@@ -10,7 +10,6 @@ POST_TYPE = (
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    body = models.TextField()
     categories = models.CharField(
         max_length=1,
         choices=POST_TYPE,
@@ -18,6 +17,7 @@ class Post(models.Model):
     )
     company = models.CharField(max_length=50)
     company_office_city = models.CharField(max_length=50)
+    body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     views = 0
@@ -27,7 +27,15 @@ class Post(models.Model):
     # TO SELECT EITHER OPTION 1 OR 2. SELECT OPTION 1 AND PRESS ENTER.
     # IT WILL THEN ASK FOR A DEFAULT VALUE FOR OUR SUPER USER. HIS ID SHOULD
     # BE 1 SINCE HE IS THE SUPER USER. PRESS 1 AND HIT ENTER.
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # UNCOMMENT THIS WHEN WE ARE READY TO INTEGRATE USER ONLY FUNCTIONS
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'post_id': self.id})
 
 class Comment(models.Model):
     body = models.TextField()
@@ -35,4 +43,4 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
