@@ -10,7 +10,6 @@ POST_TYPE = (
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    body = models.TextField()
     categories = models.CharField(
         max_length=1,
         choices=POST_TYPE,
@@ -18,6 +17,7 @@ class Post(models.Model):
     )
     company = models.CharField(max_length=50)
     company_office_city = models.CharField(max_length=50)
+    body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     views = 0
