@@ -10,7 +10,7 @@ from .models import Comment
 class PostCreate(CreateView):
   model = Post
   fields = ['title', 'categories', 'company', 'company_office_city', 'body']
-  success_url = '/'
+  success_url = '/post'
 
 class PostUpdate(UpdateView):
     model = Post
@@ -20,19 +20,7 @@ class PostDelete(DeleteView):
     model = Post
     success_url = '/'
 
-class CommentCreate(CreateView):
-  model = Comment
-  fields = ['body']
-  sucess_url = 'post/<int:post_id>/'
-
 class CommentForm(forms.Form):
-    author = forms.CharField(
-        max_length=60,
-        widget=forms.TextInput(attrs={
-            "class": "form-control",
-            "placeholder": "Your Name"
-        })
-    )
     body = forms.CharField(widget=forms.Textarea(
         attrs={
             "class": "form-control",
@@ -49,25 +37,26 @@ def post_index(request):
 
 def post_detail(request, post_id):
   post = Post.objects.get(id=post_id)
+  # Post views counter not working properly
+  post.views += 1
 
   form = CommentForm()
   if request.method == 'POST':
     form = CommentForm(request.POST)
     if form.is_valid():
       comment = Comment(
-        author=form.cleaned_data["author"],
         body=form.cleaned_data["body"],
         post=post
       )
       comment.save()
 
-  comments = Comment.objects.filter(post=post)
+  comments = Comment.objects.filter(post=post).order_by('-created_on')
   context = {
     "post": post,
     "comments": comments,
     "form": form,
   }
-  return render(request, 'blog/detail.html', { 'post': post })
+  return render(request, 'blog/detail.html', { 'post': post , 'form': form, 'comments': comments})
 
 def signup(request):
   error_message = ''
