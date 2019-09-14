@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+
+<div class="card">
+  <div class="card-content">
+    <p>{{ post.created_on }}</p>
+    <a href="{% url 'post_update' post.id %}">Edit</a>
+    <a href="{% url 'post_delete' post.id %}">Delete</a>
+    <p>{{ post.body | linebreaks }}</p>
+    <h3>Leave a comment:</h3>
+    <form action="/post/{{ post.id }}/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.body }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+    <p>On {{comment.created_on.date }}&nbsp;</p>
+    <p>{{ comment.body }}</p>
+    <hr>
+    {% endfor %}
+</div>
+
+{% endblock %}
