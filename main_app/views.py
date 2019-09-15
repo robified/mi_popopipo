@@ -1,25 +1,44 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .models import Comment
 
 # This is our Create Post view. We create new posts passing in the fields from the model.
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
   model = Post
   fields = ['title', 'categories', 'company', 'company_office_city', 'body']
   success_url = '/post'
 
-class PostUpdate(UpdateView):
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+
+class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ['title', 'categories', 'company', 'company_office_city', 'body']
 
-class PostDelete(DeleteView):
+class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = '/post'
 
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    fields = ['body']
+    success_url = f'/post'
+
+class CommentDelete(LoginRequiredMixin, DeleteView):
+    model = Comment
+    success_url = '/post'
+
+# Class for our comment form
 class CommentForm(forms.Form):
     body = forms.CharField(widget=forms.Textarea(
         attrs={
@@ -35,21 +54,25 @@ def post_index(request):
   post = Post.objects.all().order_by('-created_on')
   return render(request, 'blog/index.html', {'post': post})
 
+@login_required
 def post_detail(request, post_id):
   post = Post.objects.get(id=post_id)
+  currentUser = request.user
+  user_id = currentUser.id
   # Post views counter not working properly
   post.views += 1
-
   form = CommentForm()
   if request.method == 'POST':
     form = CommentForm(request.POST)
     if form.is_valid():
       comment = Comment(
         body=form.cleaned_data["body"],
-        post=post
+        post=post,
+        user_id=user_id
       )
       comment.save()
-
+      form = CommentForm()
+      
   comments = Comment.objects.filter(post=post).order_by('-created_on')
   context = {
     "post": post,
