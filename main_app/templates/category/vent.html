@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Vent Posts</h1>
+{% for post in posts %}
+    <div class="card">
+            <a href="{% url 'detail' post.id %}">
+                <div class="card-content">
+                    <span class="card-title">{{post.title}}</span>
+               </div>
+            </a>
+        </a>
+    </div>
+{% endfor %}
+{% endblock %}

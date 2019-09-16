@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -46,25 +47,6 @@ class CommentForm(forms.Form):
             "placeholder": "Leave a comment!"
         })
     )
-
-# Create your views here.
-def home(request):
-    return render(request, 'home.html')
- 
-def show(request):
-    return render(request, 'show.html')
- 
-def new(request):
-    return render(request, 'new.html')
- 
-def edit(request):
-    return render(request, 'edit.html')
- 
-# def delete(request):
-#     return HttpResponse('<h1>Herro Edit /ᐠ｡‸｡ᐟ\ﾉ</h1>')
- 
-# def login(request):
-#     return HttpResponse('<h1>Herro Login /ᐠ｡‸｡ᐟ\ﾉ</h1>')
 
 def home(request):
   return render(request, 'home.html')
@@ -116,3 +98,15 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)  
+
+def vent_index(request):
+  posts = Post.objects.filter(categories='V').order_by('-created_on')
+  return render(request, 'category/vent.html', {'posts': posts})
+
+def info_index(request):
+  posts = Post.objects.filter(categories='I').order_by('-created_on')
+  return render(request, 'category/info.html', {'posts': posts})
+
+def help_index(request):
+  posts = Post.objects.filter(categories='H').order_by('-created_on')
+  return render(request, 'category/info.html', {'posts': posts})
