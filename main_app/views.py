@@ -48,6 +48,9 @@ class CommentForm(forms.Form):
         })
     )
 
+def home(request):
+  return render(request, 'home.html')
+
 def post_index(request):
   post = Post.objects.all().order_by('-created_on')
   return render(request, 'blog/index.html', {'post': post})
