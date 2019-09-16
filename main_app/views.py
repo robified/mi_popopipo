@@ -60,7 +60,8 @@ def post_detail(request, post_id):
   currentUser = request.user
   user_id = currentUser.id
   # Post views counter not working properly
-  post.views += 1
+  post.blog_views=post.blog_views + 1
+  post.save()
   form = CommentForm()
   if request.method == 'POST':
     form = CommentForm(request.POST)
