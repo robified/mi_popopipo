@@ -20,7 +20,7 @@ class Post(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    views = 0
+    blog_views=models.IntegerField(default=0)
     flags = 0
     # FOR ROBIN
     # WHEN YOU RUN makemigrations IT WILL GIVE YOU A PROMPT
