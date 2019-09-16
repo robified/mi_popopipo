@@ -20,7 +20,7 @@ class Post(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    views = 0
+    blog_views=models.IntegerField(default=0)
     flags = 0
     # FOR ROBIN
     # WHEN YOU RUN makemigrations IT WILL GIVE YOU A PROMPT
@@ -29,7 +29,7 @@ class Post(models.Model):
     # BE 1 SINCE HE IS THE SUPER USER. PRESS 1 AND HIT ENTER.
 
     # UNCOMMENT THIS WHEN WE ARE READY TO INTEGRATE USER ONLY FUNCTIONS
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -42,5 +42,10 @@ class Comment(models.Model):
     views = 0
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = 0
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('comment', kwargs={'comment_id': self.id})
+    
