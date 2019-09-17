@@ -3,21 +3,25 @@
 #
 #
 # PLEASE DONT TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING
-#
+# DO NOT RUN MAKEMIGRATIONS. IF YOU RUN MAKE MIGRATIONS, 
+# TELL US SO WE CAN SYNC OR DROP THE LOCAL DATABASE. 
 #
 #
 ##
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+# Importing the django-vote package
 from vote.models import VoteModel
 
+# Our drop down menu for post category type
 POST_TYPE = (
     ('V', 'Vent'),
     ('I', 'Info'),
     ('H', 'Help')
 )
 
+# Post model - We pass in VoteModel from the django-vote package
 class Post(VoteModel, models.Model):
     title = models.CharField(max_length=255)
     categories = models.CharField(
@@ -40,6 +44,7 @@ class Post(VoteModel, models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'post_id': self.id})
 
+    # The upvote method for each post. Inherited from the VoteModel
     def upvote(self, user):
         try:
             self.post_votes.create(user=user, post=self, vote_type='up')
@@ -49,6 +54,7 @@ class Post(VoteModel, models.Model):
             return 'already_upvoted'
         return'ok'
     
+    # The downvote method for each post. Inherted from the VoteModel
     def downvote(self, user):
         try:
             self.post_votes.create(user=user, post=self, vote_type="down")
@@ -58,6 +64,7 @@ class Post(VoteModel, models.Model):
             return 'already_downvoted'
         return 'ok'
 
+# Creating a model for our votes
 class UserVotes(models.Model):
     user = models.ForeignKey(
         User, 
@@ -74,6 +81,7 @@ class UserVotes(models.Model):
     class Meta:
         unique_together = ('user', 'post', 'vote_type')
 
+# The comment model
 class Comment(models.Model):
     body = models.TextField()
     views = 0
