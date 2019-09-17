@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView
 from django.views.generic import ListView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -39,6 +40,17 @@ class CommentDelete(LoginRequiredMixin, DeleteView):
     model = Comment
     success_url = '/post'
 
+class SearchView(TemplateView):
+    template_name = 'search.html'
+
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('q', '')
+        self.results = Post.objects.filter(title__icontains=query)
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(results=self.results, **kwargs)
+        
 # Class for our comment form
 class CommentForm(forms.Form):
     body = forms.CharField(widget=forms.Textarea(
@@ -98,6 +110,18 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)  
+
+# The upvote view. After voting a post up, redirect back to the previous url page
+def upVote(request, post_id):
+  post = Post.objects.get(id=post_id)
+  post.votes.up(request.user.id)
+  return HttpResponseRedirect(f'/post/{post_id}')
+
+# The downvote view. After voting a post down, redirect back to the previous url page
+def downVote(request, post_id):
+  post = Post.objects.get(id=post_id)
+  post.votes.down(request.user.id)
+  return HttpResponseRedirect(f'/post/{post_id}')
 
 def vent_index(request):
   posts = Post.objects.filter(categories='V').order_by('-created_on')
