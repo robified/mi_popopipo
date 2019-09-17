@@ -45,10 +45,14 @@ form.body: The text area for writing a comment. We need this to render the empty
     <a href="{% url 'post_delete' post.id %}">Delete</a>
     {% endif %}
     <p>{{ post.body | linebreaks }}</p>
-    <p>Votes: {{post.votes  }}
+    <p>Votes: {{post.votes.count  }}
     </br>
-    <button>Upvote</button>
-    <button>Downvote</button>
+    <form action='upVote?return_url={{ request.path }}' method='GET'>
+    <button type='submit'>Upvote</button>
+    </form>
+    <form action='downVote?return_url={{ request.path }}' method='GET'>
+    <button type='submit'>Down Vote</button>
+    </form>
     <h3>Leave a comment:</h3>
     <form action="/post/{{ post.id }}/" method="post">
         {% csrf_token %}
