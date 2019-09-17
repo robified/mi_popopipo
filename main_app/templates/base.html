@@ -32,7 +32,11 @@
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
-
+                    Search
+                    <form method="GET" action="{% url 'search'%}">
+                        <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search"/>
+                        <input type="submit" class="btn" value="Search!">
+                    </form>
                 </ul>
             </div>
         </nav>
