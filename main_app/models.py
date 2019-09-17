@@ -1,6 +1,16 @@
+##
+#
+#
+#
+# PLEASE DONT TOUCH UNLESS YOU KNOW WHAT YOU ARE DOING
+#
+#
+#
+##
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from vote.models import VoteModel
 
 POST_TYPE = (
     ('V', 'Vent'),
@@ -8,7 +18,7 @@ POST_TYPE = (
     ('H', 'Help')
 )
 
-class Post(models.Model):
+class Post(VoteModel, models.Model):
     title = models.CharField(max_length=255)
     categories = models.CharField(
         max_length=1,
@@ -21,14 +31,8 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     blog_views=models.IntegerField(default=0)
+    votes=models.IntegerField(default=0)
     flags = 0
-    # FOR ROBIN
-    # WHEN YOU RUN makemigrations IT WILL GIVE YOU A PROMPT
-    # TO SELECT EITHER OPTION 1 OR 2. SELECT OPTION 1 AND PRESS ENTER.
-    # IT WILL THEN ASK FOR A DEFAULT VALUE FOR OUR SUPER USER. HIS ID SHOULD
-    # BE 1 SINCE HE IS THE SUPER USER. PRESS 1 AND HIT ENTER.
-
-    # UNCOMMENT THIS WHEN WE ARE READY TO INTEGRATE USER ONLY FUNCTIONS
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -36,6 +40,40 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'post_id': self.id})
+
+    def upvote(self, user):
+        try:
+            self.post_votes.create(user=user, post=self, vote_type='up')
+            self.votes += 1
+            self.save()
+        except IntegrityError:
+            return 'already_upvoted'
+        return'ok'
+    
+    def downvote(self, user):
+        try:
+            self.post_votes.create(user=user, post=self, vote_type="down")
+            self.votes -= 1
+            self.save()
+        except IntegrityError:
+            return 'already_downvoted'
+        return 'ok'
+
+class UserVotes(models.Model):
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name='user_votes'
+        )
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='post_votes'
+    )
+    vote_type = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = ('user', 'post', 'vote_type')
 
 class Comment(models.Model):
     body = models.TextField()
@@ -48,4 +86,3 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('comment', kwargs={'comment_id': self.id})
-    
