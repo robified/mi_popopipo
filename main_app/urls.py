@@ -11,7 +11,7 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('post/', views.post_index, name='index'),
     path('post/<int:post_id>/', views.post_detail, name='detail'),
-    
+    path('post/search', views.SearchView.as_view(), name='search'),
     path('post/new/', views.PostCreate.as_view(), name='post_create'),
     path('post/comment/<int:pk>/update/', views.CommentUpdate.as_view(), name='comment_update'),
     path('post/comment/<int:pk>/delete/', views.CommentDelete.as_view(), name='comment_delete'),
