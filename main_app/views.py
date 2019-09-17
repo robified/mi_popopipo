@@ -102,6 +102,17 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)  
 
+def upVote(request, post_id):
+  post = Post.objects.get(id=post_id)
+  post.votes.up(request.user.id)
+  return HttpResponseRedirect(f'/post/{post_id}')
+
+def downVote(request, post_id):
+  post = Post.objects.get(id=post_id)
+  post.votes.down(request.user.id)
+  return HttpResponseRedirect(f'/post/{post_id}')
+
+
 def vent_index(request):
   posts = Post.objects.filter(categories='V').order_by('-created_on')
   return render(request, 'category/vent.html', {'posts': posts})
