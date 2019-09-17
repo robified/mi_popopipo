@@ -20,4 +20,6 @@ urlpatterns = [
     path('vent/', views.vent_index, name='vent_index'),
     path('info/', views.info_index, name='info_index'),
     path('help/', views.help_index, name='help_index'),
+    path('post/<int:post_id>/upVote', views.upVote, name='upVote'),
+    path('post/<int:post_id>/downVote', views.downVote, name='downVote'),
 ]
