@@ -31,7 +31,6 @@ class Post(VoteModel, models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     blog_views=models.IntegerField(default=0)
-    votes=models.IntegerField(default=0)
     flags = 0
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
