@@ -55,9 +55,6 @@ def post_index(request):
   post = Post.objects.all().order_by('-created_on')
   return render(request, 'blog/index.html', {'post': post})
 
-
-    
-
 # PLEASE TELL ME IF YOU ARE TOUCHING THE POST_DETAIL VIEWS FUNCTION
 @login_required
 def post_detail(request, post_id):
@@ -102,16 +99,17 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)  
 
+# The upvote view. After voting a post up, redirect back to the previous url page
 def upVote(request, post_id):
   post = Post.objects.get(id=post_id)
   post.votes.up(request.user.id)
   return HttpResponseRedirect(f'/post/{post_id}')
 
+# The downvote view. After voting a post down, redirect back to the previous url page
 def downVote(request, post_id):
   post = Post.objects.get(id=post_id)
   post.votes.down(request.user.id)
   return HttpResponseRedirect(f'/post/{post_id}')
-
 
 def vent_index(request):
   posts = Post.objects.filter(categories='V').order_by('-created_on')
