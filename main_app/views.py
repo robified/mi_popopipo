@@ -54,6 +54,9 @@ def post_index(request):
   post = Post.objects.all().order_by('-created_on')
   return render(request, 'blog/index.html', {'post': post})
 
+
+    
+
 # PLEASE TELL ME IF YOU ARE TOUCHING THE POST_DETAIL VIEWS FUNCTION
 @login_required
 def post_detail(request, post_id):
