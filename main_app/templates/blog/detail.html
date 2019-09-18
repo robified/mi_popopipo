@@ -38,8 +38,6 @@ form.body: The text area for writing a comment. We need this to render the empty
   <div class="card-content">
     <p>{{ post.created_on }}</p>
     <p>{{ post.blog_views }}</p>
-    <p>POST ID: {{ post.id }}</p>
-    <p>USER: {{ post.user.id }}</p>
     {% if user.id == post.user.id%}
     <a href="{% url 'post_update' post.id %}">Edit</a>
     <a href="{% url 'post_delete' post.id %}">Delete</a>
@@ -47,12 +45,15 @@ form.body: The text area for writing a comment. We need this to render the empty
     <p>{{ post.body | linebreaks }}</p>
     <p>Votes: {{post.votes.count  }}
     </br>
-    <form action='upVote?return_url={{ request.path }}' method='GET'>
-    <button type='submit'>Upvote</button>
-    </form>
-    <form action='downVote?return_url={{ request.path }}' method='GET'>
-    <button type='submit'>Down Vote</button>
-    </form>
+    {% if user_voted %}
+        <form action='upVote?return_url={{ request.path }}' method='GET'>
+            <input onclick="change()" type="submit" value="Popo" id="vote"></input>
+        </form>
+    {% else %}
+         <form action='upVote?return_url={{ request.path }}' method='GET'>
+            <input onclick="change()" type="submit" value="Pipo" id="vote"></input>
+        </form>
+    {% endif %}
     <h3>Leave a comment:</h3>
     <form action="/post/{{ post.id }}/" method="post">
         {% csrf_token %}
@@ -64,8 +65,6 @@ form.body: The text area for writing a comment. We need this to render the empty
     <h3>Comments:</h3>
     {% for comment in comments %}
     <p>On {{comment.created_on.date }}&nbsp;</p>
-    <p>AUTHOR: {{ comment.user.id }}</p>
-    <p>CURRENT USER: {{user.id}}
     <p>{{ comment.body }}</p>
     {% if comment.user.id == user.id%}
         <a href="/post/comment/{{comment.id}}/update">Edit Comment</a>
