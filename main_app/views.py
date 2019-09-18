@@ -94,7 +94,8 @@ def post_detail(request, post_id):
     "comments": comments,
     "form": form,
   }
-  return render(request, 'blog/detail.html', { 'post': post , 'form': form, 'comments': comments})
+  user_voted = post.votes.exists(request.user.id)
+  return render(request, 'blog/detail.html', { 'post': post , 'form': form, 'comments': comments, 'user_voted': user_voted})
 
 def signup(request):
   error_message = ''
@@ -114,7 +115,11 @@ def signup(request):
 # The upvote view. After voting a post up, redirect back to the previous url page
 def upVote(request, post_id):
   post = Post.objects.get(id=post_id)
-  post.votes.up(request.user.id)
+
+  if post.votes.exists(request.user.id):
+    downVote(request, post_id)
+  else:
+    post.votes.up(request.user.id)
   return HttpResponseRedirect(f'/post/{post_id}')
 
 # The downvote view. After voting a post down, redirect back to the previous url page
