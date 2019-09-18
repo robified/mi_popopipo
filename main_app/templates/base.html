@@ -9,7 +9,7 @@
     <title>PopoPipo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+    <sc
 </head>
 <body>
     <header class="navbar-fixed">
@@ -50,5 +50,13 @@
     <footer class="page-footer">
         <div class="right">All Rights Reserved, &copy; 2019 PopoPipo &nbsp;</div>
     </footer>
+    <script>
+        function change() // no ';' here
+            {
+                var elem = document.getElementById("vote");
+                if (elem.value=="Pipo") elem.value = "Popo";
+                else elem.value = "Pipo";
+            }
+    </script>
 </body>
 </html>
