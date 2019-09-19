@@ -54,7 +54,8 @@ form.body: The text area for writing a comment. We need this to render the empty
             <input onclick="change()" type="submit" value="Pipo" id="vote"></input>
         </form>
     {% endif %}
-    <h3>Leave a comment:</h3>
+    <br>
+    <br>
     <form action="/post/{{ post.id }}/" method="post">
         {% csrf_token %}
         <div class="form-group">

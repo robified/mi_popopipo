@@ -139,4 +139,4 @@ def info_index(request):
 
 def help_index(request):
   posts = Post.objects.filter(categories='H').order_by('-created_on')
-  return render(request, 'category/info.html', {'posts': posts})
+  return render(request, 'category/help.html', {'posts': posts})
