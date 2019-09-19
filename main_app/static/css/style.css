@@ -9,13 +9,11 @@ a:hover {
     color: inherit;
 }
 
-.wrap {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 8%;
+#index-card {
+    text-align-last: center;
+    border: 3px double black;
 }
 
-.card {
-    margin: 5px;
-    text-align-last: center;
+#index-card:hover {
+  box-shadow: 8px 8px 8px 5px #888888;
 }
