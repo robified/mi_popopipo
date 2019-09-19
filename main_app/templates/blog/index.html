@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Pokedex</h1>
+<h1>Popodex</h1>
 
 {% for single_post in post%}
     <div class="card">
             <a href="{% url 'detail' single_post.id %}">
                 <div class="card-content">
-                    <span class="card-title">{{single_post.title}}</span>
+                    <span class="card-title">
+                        {{single_post.title}}
+                        <br> &nbsp; &nbsp; &nbsp;   
+                        {{single_post.body}}
+                    </span>
                </div>
             </a>
         </a>
