@@ -1,7 +1,62 @@
-{% extends 'base.html' %}
-
-    {% for result in results%}
-        <p>{{result.title}}</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PopoPipo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div >
+                <ul>
+                    <li><a href="/" class="left brand-logo">&nbsp;&nbsp;PopoPipo</a></li>
+                
+                
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'post_create' %}">New Post</a></li>
+                    <li><a href="{% url 'index' %}">View all Posts</a></li>
+                    <li><a href="#">Categories</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'vent_index' %}">Vent</a></li>
+                            <li><a class="dropdown-item" href="{% url 'info_index' %}">Info</a></li>
+                            <li><a class="dropdown-item" href="{% url 'help_index' %}">Help</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li>                    Search
+                    <form method="GET" action="{% url 'search'%}">
+                        <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search"/>
+                        <input type="submit" class="btn" value="Search!">
+                    </form>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
+    
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% for single_post in results%}
+        <div class="card">
+                <a href="{% url 'detail' single_post.id %}">
+                    <div class="card-content">
+                        <span class="card-title">
+                            {{single_post.title}}
+                            <br> &nbsp; &nbsp; &nbsp;   
+                            {{single_post.body}}
+                        </span>
+                </div>
+                </a>
+            </a>
+        </div>
     {% endfor %}
-
-{% endblock %}
+</body>
+</html>
