@@ -28,6 +28,10 @@ header {
   background: #151537;
 
 }
+form, div.card, h1 {
+  margin: 10vmin;
+}
+
 ul {
   background: 040308;
 	list-style: none;
