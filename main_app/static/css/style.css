@@ -1,0 +1,10 @@
+#newPost {
+    padding: 0 50px 50px 50px;
+}
+a {
+    color: black;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
