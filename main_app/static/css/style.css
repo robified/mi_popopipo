@@ -1,0 +1,21 @@
+#newPost {
+    padding: 0 50px 50px 50px;
+}
+a {
+    color: black;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 8%;
+}
+
+.card {
+    margin: 5px;
+    text-align-last: center;
+}
