@@ -9,34 +9,31 @@
     <title>PopoPipo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <sc
+    
 </head>
 <body>
-    <header class="navbar-fixed">
+    <header>
         <nav>
-            <div class="nav-wrapper">
+            <div >
                 <ul>
                     <li><a href="/" class="left brand-logo">&nbsp;&nbsp;PopoPipo</a></li>
-                </ul>
                 
-                <ul class="right">
+                
+                    {% if user.is_authenticated %}
                     <li><a href="{% url 'post_create' %}">New Post</a></li>
                     <li><a href="{% url 'index' %}">View all Posts</a></li>
-                    <br>
-                    Categories
-                    <li><a href="{% url 'vent_index' %}">Vent</a></li>
-                    <li><a href="{% url 'info_index' %}">Info</a></li>
-                    <li><a href="{% url 'help_index' %}">Help</a></li>
-                    <br>
-                    Authentications
+                    <li><a href="#">Categories</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'vent_index' %}">Vent</a></li>
+                            <li><a class="dropdown-item" href="{% url 'info_index' %}">Info</a></li>
+                            <li><a class="dropdown-item" href="{% url 'help_index' %}">Help</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                    Search
-                    <form method="GET" action="{% url 'search'%}">
-                        <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search"/>
-                        <input type="submit" class="btn" value="Search!">
-                    </form>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -47,7 +44,7 @@
         {% endblock %}
     </main>
 
-    <footer class="page-footer">
+    <footer class="fixed-bottom">
         <div class="right">All Rights Reserved, &copy; 2019 PopoPipo &nbsp;</div>
     </footer>
     <script>
