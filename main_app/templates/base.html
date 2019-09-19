@@ -39,11 +39,11 @@
         </div>
       </li>
     </ul>
-    <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
     <form method="GET" action="{% url 'search'%}" class="form-inline my-2 my-lg-0">
       <input class="searchfield form-control mr-sm-2" id="searchbox" name="q" type="text" placeholder="Search" aria-label="Search"/>
       <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search!">
     </form>
+    <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
       {% else %}
         <a href="{% url 'signup' %}" class="nav-link text-primary">Sign Up</a>
         <a href="{% url 'login' %}" class="nav-link text-primary">Log In</a>
@@ -58,7 +58,7 @@
     </main>
 
     <footer class="fixed-bottom">
-        <div class="right">All Rights Reserved, &copy; 2019 PopoPipo &nbsp;</div>
+        <div class="float-right">All Rights Reserved, &copy; 2019 PopoPipo &nbsp;</div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
