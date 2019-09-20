@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if object %}
+<h3 class="text-center display-3">Edit Comment</h3>  
+{% else %}
 <h3 class="text-center display-3">New Comment</h3>  
+{% endif %}
   <form id="newPost" action="" method="post">
+  <i class="fa fa-question-circle" aria-hidden="true"></i>
     {% csrf_token %}
     <table class="table table-striped">
       {{ form.as_table }}

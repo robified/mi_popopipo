@@ -1,19 +1,39 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h1>Vent Posts</h1>
-{% for post in posts %}
-    <div class="card">
-            <a href="{% url 'detail' post.id %}">
-                <div class="card-content">
-                    <span class="card-title">
-                        {{post.title}}
-                        <br> &nbsp; &nbsp; &nbsp;   
-                        {{post.body}}
-                    </span>
-               </div>
+
+<h1 class="text-center">Popodex</h1><br>
+{% if posts|length == 0 %}
+    <h3 class="text-center">No popo vent here!</h3>
+{% else %}    
+<div class="container-fluid">
+    <div class="row">
+        {% for single_post in posts%}
+          <div class="col-sm-6">
+            <a href="{% url 'detail' single_post.id %}">
+                <div class="card" style="width: 27rem;">
+                    <div class="card-body" id="index-card">
+                        <h5 class="card-title text-center">{{single_post.title}}</h5>
+                        <p><i class="fas fa-building"></i> {{single_post.company}}</p>
+                        <p><i class="fas fa-map-pin"></i> {{single_post.company_office_city}}</p>
+                        <p class="card-subtitle mb-2 text-muted">{{single_post.created_on}}</p>
+                        <div class="card-subtitle mb-2 text-muted">
+                            {% if single_post.categories == 'V'%}
+                                <h6 class="text-danger">Vent</h6>
+                            {% elif single_post.categories == 'H'%}
+                                <h6 class="text-success">Help</h6>
+                            {% else %}
+                                <h6 class="text-info">Info</h6>
+                            {% endif %}
+                        </div>
+                        <p class="card-text">{{single_post.summary}}</p>
+                        <p><i class="fas fa-eye" style="color: rgb(104, 208, 245)"></i> {{single_post.blog_views}} &nbsp;&nbsp;<i class="fas fa-heart" style="color: rgb(235, 75, 89);"></i> {{single_post.votes.count}} &nbsp;&nbsp;<i class="fas fa-comment" style="color: rgb(41, 213, 48)"></i> {{single_post.comment_size}}</p>
+                    </div>
+                </div>
             </a>
-        </a>
+            <br>
+           </div>
+        {% endfor %}
     </div>
-{% endfor %}
+  </div>  
+  {% endif %}
 {% endblock %}
