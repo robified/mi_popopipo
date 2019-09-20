@@ -27,8 +27,8 @@ form.body: The text area for writing a comment. We need this to render the empty
 -->
 
 {% extends 'base.html' %}
-{% block content %}
 
+{% block content %}
 <h1>{{ post.title }}</h1>
 <p><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.created_on }}</p>
 <div class="card">
@@ -71,5 +71,4 @@ form.body: The text area for writing a comment. We need this to render the empty
     <hr>
     {% endfor %}
 </div>
-
 {% endblock %}

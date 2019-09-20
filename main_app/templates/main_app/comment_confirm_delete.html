@@ -2,9 +2,8 @@
 
 {% block content %}
     
-
-  <h3 class="text-center display-3">Delete Post</h3> 
-  <h4 class="text-center">Are you sure you want to delete <span class="teal-text">{{ object.title }}</span>?</h4>
+  <h3 class="text-center display-3">Delete Comment</h3> 
+  <h4 class="text-center">Are you sure you want to delete <span class="teal-text">{{ comment.body }}</span>?</h4>
 
   <form id="newPost" action="" method="POST">
     {% csrf_token %}

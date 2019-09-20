@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if object %}
   <div class="text-center">
-  <h3 class="text-center display-3">New Post</h3>
+  <h3 class="text-center display-4">Edit Post</h3>
   <a class="pull-right" onclick="info()" style="color: rgb(104, 208, 245)"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
   </div>
+  {% else %}
+  <div class="text-center">
+  <h3 class="text-center display-4">New Post</h3>
+  <a class="pull-right" onclick="info()" style="color: rgb(104, 208, 245)"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+  </div>
+  {% endif %}
   
   <form id="newPost" action="" method="post">
     {% csrf_token %}
