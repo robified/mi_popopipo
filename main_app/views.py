@@ -66,6 +66,12 @@ def home(request):
 
 def post_index(request):
   post = Post.objects.all().order_by('-created_on')
+  for blog in post:
+        short_body = ''
+        for char_index in range(min(len(blog.body), 50)):
+              short_body += blog.body[char_index]
+        blog.summary = short_body
+        blog.save()
   return render(request, 'blog/index.html', {'post': post})
 
 # PLEASE TELL ME IF YOU ARE TOUCHING THE POST_DETAIL VIEWS FUNCTION
