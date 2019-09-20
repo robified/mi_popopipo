@@ -66,6 +66,14 @@ def home(request):
 
 def post_index(request):
   post = Post.objects.all().order_by('-created_on')
+  for blog in post:
+        short_body = ''
+        for char_index in range(min(len(blog.body), 50)):
+              short_body += blog.body[char_index]
+        if len(blog.body) > len(short_body) and short_body != blog.body:
+            short_body += '...'
+        blog.summary = short_body
+        blog.save()
   return render(request, 'blog/index.html', {'post': post})
 
 # PLEASE TELL ME IF YOU ARE TOUCHING THE POST_DETAIL VIEWS FUNCTION
@@ -86,15 +94,18 @@ def post_detail(request, post_id):
         post=post,
         user_id=user_id
       )
+      post.blog_views -= 1
+      post.comment_size += 1
       comment.save()
       form = CommentForm()
-      
+  post.save()
   comments = Comment.objects.filter(post=post).order_by('-created_on')
   context = {
     "post": post,
     "comments": comments,
     "form": form,
   }
+  post.save()
   user_voted = post.votes.exists(request.user.id)
   return render(request, 'blog/detail.html', { 'post': post , 'form': form, 'comments': comments, 'user_voted': user_voted})
 
@@ -116,7 +127,8 @@ def signup(request):
 # The upvote view. After voting a post up, redirect back to the previous url page
 def upVote(request, post_id):
   post = Post.objects.get(id=post_id)
-
+  post.blog_views -= 1
+  post.save()
   if post.votes.exists(request.user.id):
     downVote(request, post_id)
   else:

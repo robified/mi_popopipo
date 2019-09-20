@@ -32,10 +32,11 @@ class Post(VoteModel, models.Model):
     company = models.CharField(max_length=50)
     company_office_city = models.CharField(max_length=50)
     body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    summary = models.TextField(default='No Summary Was Found')
+    created_on = models.DateField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    blog_views=models.IntegerField(default=0)
-    flags = 0
+    blog_views = models.IntegerField(default=0)
+    comment_size = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

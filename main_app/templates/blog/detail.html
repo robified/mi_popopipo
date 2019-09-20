@@ -30,26 +30,26 @@ form.body: The text area for writing a comment. We need this to render the empty
 
 {% block content %}
 <h1>{{ post.title }}</h1>
-
+<p><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.created_on }}</p>
 <div class="card">
   <div class="card-content">
-    <p>{{ post.created_on }}</p>
-    <p>{{ post.blog_views }}</p>
-    {% if user.id == post.user.id%}
-    <a href="{% url 'post_update' post.id %}">Edit</a>
-    <a href="{% url 'post_delete' post.id %}">Delete</a>
-    {% endif %}
+    <p><i class="fas fa-building"></i> {{post.company}}</p>
+    <p><i class="fas fa-map-pin"></i> {{post.company_office_city}}</p>
     <p>{{ post.body | linebreaks }}</p>
-    <p>Votes: {{post.votes.count  }}
-    </br>
+    <p><i class="fas fa-eye" style="color: rgb(104, 208, 245)"></i> {{ post.blog_views }} <i class="fas fa-heart" style="color: rgb(235, 75, 89)"> {{post.votes.count  }}</i></p>
     {% if user_voted %}
         <form action='upVote?return_url={{ request.path }}' method='GET'>
-            <input onclick="change()" type="submit" value="Popo" id="vote"></input>
+            <button type="submit" id="vote" class="btn btn-danger">Popo</button>
         </form>
     {% else %}
          <form action='upVote?return_url={{ request.path }}' method='GET'>
-            <input onclick="change()" type="submit" value="Pipo" id="vote"></input>
+            <button type="submit" id="vote" class="btn btn-success"> Pipo</button>
         </form>
+    {% endif %}
+    <br>
+    {% if user.id == post.user.id%}
+        <a href="{% url 'post_update' post.id %}" class="btn btn-success">Edit</a>
+        <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete</a>
     {% endif %}
     <br>
     <br>
@@ -65,8 +65,8 @@ form.body: The text area for writing a comment. We need this to render the empty
     <p>On {{comment.created_on.date }}&nbsp;</p>
     <p>{{ comment.body }}</p>
     {% if comment.user.id == user.id%}
-        <a href="/post/comment/{{comment.id}}/update">Edit Comment</a>
-        <a href="{% url 'comment_delete' comment.id %}">Delete</a>
+        <a href="/post/comment/{{comment.id}}/update" class="edit btn btn-success">Edit Comment</a>
+        <a href="{% url 'comment_delete' comment.id %}" class="delete btn btn-danger">Delete</a>
     {% endif %}
     <hr>
     {% endfor %}

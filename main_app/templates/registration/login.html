@@ -1,10 +1,45 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
+
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+            <h2 style="color:white;">PopoPipo</h2>
+					<div class="brand_logo_container">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="input" class="form-control" name="username" id="inputEmail" placeholder="Username" required >
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							  <input type="password" class="form-control" name="password" id="inputPass" placeholder="Password" required>
+						</div>
+						<div class="form-group">
+						</div>
+					
+				</div>
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<button type="submit" class="btn btn-success">Login</button>
+                  <input type="hidden" name="next" value="{{ next }}">
+				</div>
+        </form>
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Don't have an account? <a href="{% url 'signup' %}" class="ml-2" style="color:white;">Sign Up</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

@@ -13,7 +13,29 @@ a:hover {
     text-align-last: center;
     border: 3px double black;
 }
-
+    
 #index-card:hover {
-  box-shadow: 8px 8px 8px 5px #888888;
+    box-shadow: 8px 8px 8px 5px #888888;
+}
+
+.info {
+  right: 125px;
+}
+
+.user_card {
+  height: 400px;
+  width: 350px;
+  margin-top: 10%;
+  margin-bottom: auto;
+  background: #007bff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+
 }
