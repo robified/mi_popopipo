@@ -44,7 +44,7 @@
       <input class="searchfield form-control mr-sm-2" id="searchbox" name="q" type="text" placeholder="Search" aria-label="Search"/>
       <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search!">
     </form>
-    <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
+    <a href="{% url 'logout' %}" class="nav-link" id="red">Log Out</a>
       {% else %}
       <li>
         <a href="{% url 'index' %}" class="nav-link text-primary">View all Posts</a>
