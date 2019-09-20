@@ -10,6 +10,8 @@
                 <div class="card" style="width: 27rem;">
                     <div class="card-body" id="index-card">
                         <h5 class="card-title text-center">{{single_post.title}}</h5>
+                        <p><i class="fas fa-building"></i> {{single_post.company}}</p>
+                        <p><i class="fas fa-map-pin"></i> {{single_post.company_office_city}}</p>
                         <p class="card-subtitle mb-2 text-muted">{{single_post.created_on}}</p>
                         <h6 class="card-subtitle mb-2 text-muted">
                             {% if single_post.categories == 'V'%}
@@ -20,7 +22,7 @@
                                 Info
                             {% endif %}
                         </h6>
-                        <p class="card-text">{{single_post.body}}</p>
+                        <p class="card-text">{{single_post.summary}}</p>
                         <p><i class="fas fa-eye"></i> {{single_post.blog_views}} &nbsp;&nbsp;<i class="fas fa-heart"></i> {{single_post.votes.count}} &nbsp;&nbsp;<i class="fas fa-comment"></i> {{single_post.comment_size}}</p>
                     </div>
                 </div>
