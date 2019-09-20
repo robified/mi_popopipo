@@ -29,7 +29,7 @@
       <li>
         <a href="{% url 'index' %}" class="nav-link text-primary">View all Posts</a>
       </li>
-            <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories
         </a>
@@ -46,9 +46,13 @@
     </form>
     <a href="{% url 'logout' %}" class="nav-link">Log Out</a>
       {% else %}
-        <a href="{% url 'signup' %}" class="nav-link text-primary">Sign Up</a>
-        <a href="{% url 'login' %}" class="nav-link text-primary">Log In</a>
-        <a href="{% url 'index' %}" class="nav-link text-primary">View Posts</a>
+      <li>
+        <a href="{% url 'index' %}" class="nav-link text-primary">View all Posts</a>
+      </li>
+    </ul>
+    
+    <a href="{% url 'signup' %}" class="nav-link text-primary">Sign Up</a>
+    <a href="{% url 'login' %}" class="nav-link text-primary">Log In</a>
       {% endif %}
   </div>
 </nav>
