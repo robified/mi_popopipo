@@ -1,71 +1,19 @@
-* {
-  box-sizing: border-box;
+#newPost {
+    padding: 0 50px 50px 50px;
 }
-
-body {
-  background-color: #040308;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  margin: 0px;
-}
-
 a {
-  text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
-nav {
-  font-family: monospace;
+#index-card {
+    text-align-last: center;
+    border: 3px double black;
 }
 
-ul {
-  background: 040308;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-li {
-	color: #fff;
-  background: #151537;
-	display: block;
-	float: left;
-	padding: 1rem;
-	position: relative;
-	text-decoration: none;
-  transition-duration: 0.5s;
-}
-  
-li a {
-  color: #fff;
-}
-
-li:hover {
-	background: #2B2575;
-	cursor: pointer;
-}
-
-ul li ul {
-	background: white;
-	visibility: hidden;
-  opacity: 0;
-  min-width: 5rem;
-	position: absolute;
-  transition: all 0.5s ease;
-  margin-top: 1rem;
-	left: 0;
-  display: none;
-}
-
-ul li:hover > ul,
-ul li ul:hover {
-  visibility: visible;
-  opacity: 1;
-  display: block;
-}
-
-ul li ul li {
-	clear: both;
-  width: 100%;
+#index-card:hover {
+  box-shadow: 8px 8px 8px 5px #888888;
 }

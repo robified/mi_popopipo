@@ -1,7 +1,4 @@
 <!-- Do not display this image at the moment
-HELLO CONNER IT IS I, YOUR MODEL GOD DAVID
-
-Jokes aside here's the documentation for the objects being passed into this html file
 
 POST: The properties for our post object. It has a few stuff to it.
 post.title: The title of the post
@@ -54,7 +51,8 @@ form.body: The text area for writing a comment. We need this to render the empty
             <input onclick="change()" type="submit" value="Pipo" id="vote"></input>
         </form>
     {% endif %}
-    <h3>Leave a comment:</h3>
+    <br>
+    <br>
     <form action="/post/{{ post.id }}/" method="post">
         {% csrf_token %}
         <div class="form-group">
