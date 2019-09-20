@@ -1,14 +1,49 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
-<h1>Sign Up</h1>
 
 {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
 
-<form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="signup">
-</form>
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+            <h2 style="color:white;">PopoPipo</h2>
+					<div class="brand_logo_container">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+                <input type="text" class="form-control" name="username" maxlength="150" autofocus required id="id_username">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+                  <input type="password" class="form-control" name="password1" required id="id_password1" placeholder="New Password">
+                  <br>
+                  <input type="password" class="form-control" name="password2" required id="id_password2" placeholder="Reenter">
+						</div>
+						<div class="form-group">
+						</div>
+					
+				</div>
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<button type="submit" class="btn btn-success">Sign Up!</button>
+                  <input type="hidden" name="next" value="{{ next }}">
+				</div>
+        </form>
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Already have an account? <a href="{% url 'login' %}" class="ml-2" style="color:white;">Sign In</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
