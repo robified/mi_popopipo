@@ -18,6 +18,10 @@ a:hover {
     box-shadow: 8px 8px 8px 5px #888888;
 }
 
+.info {
+  right: 125px;
+}
+
 .user_card {
   height: 400px;
   width: 350px;
