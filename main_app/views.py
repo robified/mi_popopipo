@@ -86,15 +86,19 @@ def post_detail(request, post_id):
         post=post,
         user_id=user_id
       )
+      post.comment_size += 1
+      post.save()
       comment.save()
       form = CommentForm()
-      
+  
   comments = Comment.objects.filter(post=post).order_by('-created_on')
   context = {
     "post": post,
     "comments": comments,
     "form": form,
   }
+  post.blog_views -= 1
+  post.save()
   user_voted = post.votes.exists(request.user.id)
   return render(request, 'blog/detail.html', { 'post': post , 'form': form, 'comments': comments, 'user_voted': user_voted})
 
@@ -116,7 +120,6 @@ def signup(request):
 # The upvote view. After voting a post up, redirect back to the previous url page
 def upVote(request, post_id):
   post = Post.objects.get(id=post_id)
-
   if post.votes.exists(request.user.id):
     downVote(request, post_id)
   else:
