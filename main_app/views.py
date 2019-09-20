@@ -86,9 +86,11 @@ def post_detail(request, post_id):
         post=post,
         user_id=user_id
       )
+      post.comment_size += 1
+      post.save()
       comment.save()
       form = CommentForm()
-      
+  
   comments = Comment.objects.filter(post=post).order_by('-created_on')
   context = {
     "post": post,
