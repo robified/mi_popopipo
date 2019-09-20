@@ -33,7 +33,7 @@ class Post(VoteModel, models.Model):
     company_office_city = models.CharField(max_length=50)
     body = models.TextField()
     summary = models.TextField(default='No Summary Was Found')
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     blog_views = models.IntegerField(default=0)
     comment_size = models.IntegerField(default=0)
