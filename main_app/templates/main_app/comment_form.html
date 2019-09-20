@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <h3 class="text-center display-3">New Comment</h3>  
   <form id="newPost" action="" method="post">
+  <i class="fa fa-question-circle" aria-hidden="true"></i>
     {% csrf_token %}
     <table class="table table-striped">
       {{ form.as_table }}

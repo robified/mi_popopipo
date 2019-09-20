@@ -30,14 +30,13 @@ form.body: The text area for writing a comment. We need this to render the empty
 {% block content %}
 
 <h1>{{ post.title }}</h1>
-
+<p><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.created_on }}</p>
 <div class="card">
   <div class="card-content">
     <p><i class="fas fa-building"></i> {{post.company}}</p>
     <p><i class="fas fa-map-pin"></i> {{post.company_office_city}}</p>
-    <p><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.created_on }}</p>
     <p>{{ post.body | linebreaks }}</p>
-    <p><i class="fas fa-eye"></i> {{ post.blog_views }} <i class="fas fa-heart" style="color: #008000;"> {{post.votes.count  }}</i></p>
+    <p><i class="fas fa-eye" style="color: rgb(104, 208, 245)"></i> {{ post.blog_views }} <i class="fas fa-heart" style="color: rgb(235, 75, 89)"> {{post.votes.count  }}</i></p>
     {% if user_voted %}
         <form action='upVote?return_url={{ request.path }}' method='GET'>
             <button type="submit" id="vote" class="btn btn-danger">Popo</button>

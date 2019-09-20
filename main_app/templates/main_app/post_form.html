@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <div class="text-center">
   <h3 class="text-center display-3">New Post</h3>
+  <a class="pull-right" onclick="info()" style="color: rgb(104, 208, 245)"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+  </div>
+  
   <form id="newPost" action="" method="post">
     {% csrf_token %}
     <table class="table table-striped">
@@ -9,4 +13,19 @@
     </table>
     <input type="submit" value="Submit!" class="btn btn-dark btn-lg btn-block">
   </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script>
+      function info() { 
+        Swal.fire({
+        title: '<strong>Guidelines</strong>',
+        type: 'info',
+        html:
+          'Please keep your posts relevant to the category you are adding it to. If the team deems that the post is off-topic it will be removed. Please remember to add your City/State to location.',
+        focusConfirm: false,
+        confirmButtonText:
+          '<i class="fa fa-thumbs-up"></i> Great!',
+        confirmButtonAriaLabel: 'Thumbs up, great!',
+      })
+    }
+  </script>
 {% endblock %}

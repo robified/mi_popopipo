@@ -9,8 +9,7 @@
     <title>PopoPipo</title>
     <link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">   
 </head>
 <body>
     <header>
@@ -24,19 +23,19 @@
     <ul class="navbar-nav mr-auto">
       {% if user.is_authenticated %}
       <li>
-        <a href="{% url 'post_create' %}" class="nav-link">New Post</a>
+        <a href="{% url 'post_create' %}" class="nav-link text-primary">New Post</a>
       </li>
       <li>
-        <a href="{% url 'index' %}" class="nav-link">View all Posts</a>
+        <a href="{% url 'index' %}" class="nav-link text-primary">View all Posts</a>
       </li>
             <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'vent_index' %}">Vent</a>
-          <a class="dropdown-item" href="{% url 'info_index' %}">Info</a>
-          <a class="dropdown-item" href="{% url 'help_index' %}">Help</a>
+          <a class="dropdown-item text-danger" href="{% url 'vent_index' %}">Vent</a>
+          <a class="dropdown-item text-info" href="{% url 'info_index' %}">Info</a>
+          <a class="dropdown-item text-success" href="{% url 'help_index' %}">Help</a>
         </div>
       </li>
     </ul>
@@ -48,6 +47,7 @@
       {% else %}
         <a href="{% url 'signup' %}" class="nav-link text-primary">Sign Up</a>
         <a href="{% url 'login' %}" class="nav-link text-primary">Log In</a>
+        <a href="{% url 'index' %}" class="nav-link text-primary">View Posts</a>
       {% endif %}
   </div>
 </nav>
