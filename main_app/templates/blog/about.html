@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">About Us</h1>
+<br><br><br><br><br><br>
+<div class="card mx-auto" style="width: 50rem;">
+    <div class="card-body text-center center">
+        <h3 class="card-title">PopoPipo</h5>
+        <p class="card-text">We believe that users should be able to freely talk about their workplace and ask for help without fear of repercussion. PopoPipo provides just that. Anonymous users, discussion boards, and forum posts allow users to freely Popo and Pipo their workplace.</p>
+        <p class="card-text">Welcome to PopoPipo.</p>
+        <a href="/" class="btn btn-primary">View Posts</a>
+        <a href="{% url 'signup' %}" class="btn btn-success">Sign Up</a>
+        <a href="{% url 'login' %}" class="btn btn-info">Log In</a>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><h1 class="text-center">Meet the Devs</h1>
+<div class="container">
+  <div class="row">
+    <!-- Team Member 1 -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="../../static/images/owo.jpg" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">David Bae</h5>
+          <div class="card-text text-black-50">API/Model Master</div>
+          <p class="card-text">"It's PopoPipo like TopoChico but with P's"</p>
+          <a href="https://github.com/eyybaebae" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/eyybaebae/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- Team Member 2 -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="../../static/images/uwuR.jpg" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Robin Dao</h5>
+          <div class="card-text text-black-50">GitHub/Scrum Master</div>
+          <p class="card-text">"#NODE ON MEEEEEE"</p>
+          <a href="https://github.com/robified" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/robindao/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  <!-- /.row -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="../../static/images/>_<.jpg" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-0">Conner McCabe</h5>
+          <div class="card-text text-black-50">Documentation/Design Master</div>
+          <p class="card-text">"That's a whole goose by the way."</p>
+          <a href="https://github.com/ConnerMcCabe" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/conner-p-mccabe/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+{% endblock %}
