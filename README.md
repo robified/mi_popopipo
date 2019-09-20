@@ -25,8 +25,8 @@
 - Heroku
 
 ### Links
-- [Trello](https://trello.com/b/ARZrtXpf/popopipo-board)
 - [Pitch Deck](https://docs.google.com/presentation/d/1CbD-Lmh8Juw45oZl10vWsDRVLaolzaLF2_E1RR1xqps/edit#slide=id.p)
+- [Trello](https://trello.com/b/ARZrtXpf/popopipo-board)
 - [Heroku](https://popopipo.herokuapp.com)
 
 ### Planned Future Enhancements
