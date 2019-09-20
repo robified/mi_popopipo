@@ -16,7 +16,7 @@ from .models import Comment
 class PostCreate(LoginRequiredMixin, CreateView):
   model = Post
   fields = ['title', 'categories', 'company', 'company_office_city', 'body']
-  success_url = '/post'
+  success_url = '/'
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -29,16 +29,16 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
-    success_url = '/post'
+    success_url = '/'
 
 class CommentUpdate(LoginRequiredMixin, UpdateView):
     model = Comment
     fields = ['body']
-    success_url = f'/post'
+    success_url = '/'
 
 class CommentDelete(LoginRequiredMixin, DeleteView):
     model = Comment
-    success_url = '/post'
+    success_url = '/'
 
 class SearchView(TemplateView):
     template_name = 'search.html'
