@@ -70,6 +70,8 @@ def post_index(request):
         short_body = ''
         for char_index in range(min(len(blog.body), 50)):
               short_body += blog.body[char_index]
+        if len(blog.body) > len(short_body) and short_body != blog.body:
+            short_body += '...'
         blog.summary = short_body
         blog.save()
   return render(request, 'blog/index.html', {'post': post})
