@@ -12,7 +12,7 @@
 	- Vent unethical workplace behavior without fear of repercussion or retaliation
 
 ### Screenshot
-<img src="staticfiles/images/SignUp.png" width="550">
+<img src="staticfiles/images/SignUp.png" width="900">
 
 ### Technologies Used
 - HTML5
