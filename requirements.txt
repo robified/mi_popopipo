@@ -6,7 +6,7 @@ bs4==0.0.1
 certifi==2019.9.11
 chardet==3.0.4
 dj-database-url==0.5.0
-Django==2.2.8
+Django==2.2.9
 django-bootstrap4==1.0.1
 django-heroku==0.3.1
 django-vote==2.1.7
