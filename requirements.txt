@@ -11,7 +11,7 @@ django-bootstrap4==1.0.1
 django-heroku==0.3.1
 django-vote==2.1.7
 docutils==0.15.2
-gunicorn==19.9.0
+gunicorn==22.0.0
 idna==2.8
 isort==4.3.21
 jmespath==0.9.4
